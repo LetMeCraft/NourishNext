@@ -1,0 +1,48 @@
+/* Global CSS */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import "tailwindcss";
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Ensuring consistent font size, padding, and margin */
+body {
+  font-family: 'Poppins', sans-serif; /* Ensure Poppins font is applied globally */
+  font-size: 1rem; /* Consistent font size */
+  line-height: 1.5; /* Ensure consistent line height */
+}
+
+.navbar {
+  @apply text-xl font-semibold px-6 py-4 bg-white shadow-md; /* Ensure consistent size and padding */
+}
+
+.navbar a {
+  @apply text-lg text-gray-800 hover:text-green-600; /* Navigation link style */
+}
+
+/* To avoid any layout shifts, ensure the navbar has a fixed height */
+.navbar-fixed {
+  height: 64px; /* Fixed height for navbar */
+}
+
+/* Adjustments to ensure consistency in profile page layout */
+.profile-page {
+  padding-top: 16px; /* Ensure proper spacing for profile page */
+}
+html {
+  overflow-y: scroll;
+}
+/* fallback scrollbar for browsers without custom component */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #16a34a94 #f0fdfa;
+}
+
+
