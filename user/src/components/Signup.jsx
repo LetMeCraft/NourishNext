@@ -123,6 +123,14 @@ const AuthForm = () => {
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  const persistUserSession = (user) => {
+    localStorage.setItem("name", user.name);
+    localStorage.setItem("email", user.email);
+    localStorage.setItem("gender", user.gender);
+    localStorage.setItem("location", user.location);
+    window.dispatchEvent(new Event("authchange"));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -139,10 +147,7 @@ const AuthForm = () => {
       const user = res.data.user;
 
       if (user) {
-        localStorage.setItem("name", user.name);
-        localStorage.setItem("email", user.email);
-        localStorage.setItem("gender", user.gender);
-        localStorage.setItem("location", user.location);
+        persistUserSession(user);
         navigate("/");
       } else if (isSignup) {
         const loginRes = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/users/login`, {
@@ -152,10 +157,7 @@ const AuthForm = () => {
 
         const loginUser = loginRes.data.user;
 
-        localStorage.setItem("name", loginUser.name);
-        localStorage.setItem("email", loginUser.email);
-        localStorage.setItem("gender", loginUser.gender);
-        localStorage.setItem("location", loginUser.location);
+        persistUserSession(loginUser);
         navigate("/");
       }
     } catch (err) {

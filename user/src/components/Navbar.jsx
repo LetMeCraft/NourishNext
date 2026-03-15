@@ -16,12 +16,19 @@ const Navbar = () => {
     };
 
     window.addEventListener("storage", checkLoginStatus);
+    window.addEventListener("authchange", checkLoginStatus);
     checkLoginStatus();
 
     return () => {
       window.removeEventListener("storage", checkLoginStatus);
+      window.removeEventListener("authchange", checkLoginStatus);
     };
   }, []);
+
+  useEffect(() => {
+    setUserEmail(localStorage.getItem("email"));
+    setNavActive(false);
+  }, [currentPath]);
 
   const shouldShowSignIn =
     !isLoggedIn && currentPath !== "/start" && currentPath !== "/signup";
