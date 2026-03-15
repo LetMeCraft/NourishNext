@@ -19,12 +19,12 @@ const GenderSelect = ({ value, onChange }) => {
   return (
     <div className="relative w-full mb-3" ref={ref}>
       <div
-        className={`w-full p-3 rounded-lg border border-green-500 bg-gray-50 flex justify-between items-center cursor-pointer ${value ? "text-gray-800" : "text-gray-500"}`}
+        className={`theme-input flex cursor-pointer items-center justify-between ${value ? "text-[var(--theme-ink)]" : "text-[var(--theme-muted)]"}`}
         onClick={() => setOpen(!open)}
       >
         {value || "Select gender"}
         <svg
-          className={`w-5 h-5 text-green-600 transform ${open ? "rotate-180" : ""} transition-transform duration-200`}
+          className={`h-5 w-5 text-[var(--theme-accent-deep)] transform ${open ? "rotate-180" : ""} transition-transform duration-200`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -35,11 +35,11 @@ const GenderSelect = ({ value, onChange }) => {
       </div>
 
       {open && (
-        <ul className="absolute z-10 w-full bg-white border border-green-500 rounded-lg mt-1 shadow-lg max-h-60 overflow-auto">
+        <ul className="theme-card absolute z-10 mt-2 max-h-60 w-full overflow-auto rounded-[20px] bg-[var(--theme-card)]">
           {options.map((opt) => (
             <li
               key={opt}
-              className="p-3 hover:bg-gradient-to-b from-green-100 to-green-300 text-gray-700 cursor-pointer transition-colors"
+              className="cursor-pointer px-4 py-3 text-[var(--theme-ink)] transition-colors hover:bg-[rgba(79,127,125,0.10)]"
               onClick={() => {
                 onChange(opt);
                 setOpen(false);
@@ -71,12 +71,12 @@ const LocationSelect = ({ value, onChange }) => {
   return (
     <div className="relative w-full mb-3" ref={ref}>
       <div
-        className={`w-full p-3 rounded-lg border border-green-500 bg-gray-50 flex justify-between items-center cursor-pointer ${value ? "text-gray-800" : "text-gray-500"}`}
+        className={`theme-input flex cursor-pointer items-center justify-between ${value ? "text-[var(--theme-ink)]" : "text-[var(--theme-muted)]"}`}
         onClick={() => setOpen(!open)}
       >
         {value || "Select location"}
         <svg
-          className={`w-5 h-5 text-green-600 transform ${open ? "rotate-180" : ""} transition-transform duration-200`}
+          className={`h-5 w-5 text-[var(--theme-accent-deep)] transform ${open ? "rotate-180" : ""} transition-transform duration-200`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -87,11 +87,11 @@ const LocationSelect = ({ value, onChange }) => {
       </div>
 
       {open && (
-        <ul className="absolute z-10 w-full bg-white border border-green-500 rounded-lg mt-1 shadow-lg max-h-60 overflow-auto">
+        <ul className="theme-card absolute z-10 mt-2 max-h-60 w-full overflow-auto rounded-[20px] bg-[var(--theme-card)]">
           {options.map((opt) => (
             <li
               key={opt}
-              className="p-3 hover:bg-gradient-to-b from-green-100 to-green-300 text-gray-700 cursor-pointer transition-colors"
+              className="cursor-pointer px-4 py-3 text-[var(--theme-ink)] transition-colors hover:bg-[rgba(79,127,125,0.10)]"
               onClick={() => {
                 onChange(opt);
                 setOpen(false);
@@ -164,34 +164,34 @@ const AuthForm = () => {
   };
 
   return (
-    <div className={`flex items-center justify-center bg-gradient-to-b from-green-50 to-white px-4 py-15 ${isSignup ? "min-h-screen" : "py-32"}`}>
+    <div className={`theme-page flex items-center justify-center px-4 py-15 ${isSignup ? "min-h-screen" : "py-32"}`}>
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-md bg-gradient-to-t from-green-100 mt-5 to-white p-6 rounded-xl shadow-xl border border-green-200"
+        className="theme-card-soft mt-5 w-full max-w-md rounded-[30px] p-7"
       >
-        <h2 className="text-2xl font-bold text-green-600 text-center mb-5">
+        <h2 className="mb-5 text-center text-2xl font-bold text-[var(--theme-accent-deep)]">
           {isSignup ? "Create Your Account" : "Login to Your Account"}
         </h2>
 
         {isSignup && (
           <>
-            <label className="block text-gray-700 mb-1">Name</label>
+            <label className="mb-2 block text-[var(--theme-ink)]">Name</label>
             <input
               name="name"
               value={formData.name}
               onChange={handleChange}
               placeholder="Enter your name"
               required
-              className="w-full mb-3 p-3 rounded-lg border border-green-500 bg-gray-50 focus:outline-none focus:ring-1 focus:ring-green-600"
+              className="theme-input mb-3"
             />
 
-            <label className="block text-gray-700 mb-1">Gender</label>
+            <label className="mb-2 block text-[var(--theme-ink)]">Gender</label>
             <GenderSelect
               value={formData.gender}
               onChange={(val) => setFormData({ ...formData, gender: val })}
             />
 
-            <label className="block text-gray-700 mb-1">Location</label>
+            <label className="mb-2 block text-[var(--theme-ink)]">Location</label>
             <LocationSelect
               value={formData.location}
               onChange={(val) => setFormData({ ...formData, location: val })}
@@ -199,7 +199,7 @@ const AuthForm = () => {
           </>
         )}
 
-        <label className="block text-gray-700 mb-1">Email</label>
+        <label className="mb-2 block text-[var(--theme-ink)]">Email</label>
         <input
           name="email"
           type="email"
@@ -207,10 +207,10 @@ const AuthForm = () => {
           onChange={handleChange}
           placeholder="Enter your email"
           required
-          className="w-full mb-3 p-3 rounded-lg border border-green-500 bg-gray-50 focus:outline-none focus:ring-1 focus:ring-green-600"
+          className="theme-input mb-3"
         />
 
-        <label className="block text-gray-700 mb-1">Password</label>
+        <label className="mb-2 block text-[var(--theme-ink)]">Password</label>
         <input
           name="password"
           type="password"
@@ -218,20 +218,20 @@ const AuthForm = () => {
           onChange={handleChange}
           placeholder="Enter password"
           required
-          className="w-full mb-4 p-3 rounded-lg bg-gray-50 border border-green-500 focus:outline-none focus:ring-1 focus:ring-green-600"
+          className="theme-input mb-4"
         />
 
         <button
           type="submit"
-          className="w-full bg-green-500 hover:bg-green-600 text-white p-3 rounded-lg font-semibold mb-3 shadow-md transition-all duration-200 transform hover:-translate-y-0.5"
+          className="theme-button mb-3 w-full rounded-[18px] p-3 font-semibold"
         >
           {isSignup ? "Sign Up" : "Login"}
         </button>
 
         {error && <p className="text-red-500 text-center mb-2">{error}</p>}
-        {success && <p className="text-green-600 text-center mb-2">{success}</p>}
+        {success && <p className="mb-2 text-center text-[var(--theme-accent-deep)]">{success}</p>}
 
-        <p className="text-gray-600 text-center text-sm">
+        <p className="text-center text-sm text-[var(--theme-muted)]">
           {isSignup ? "Already have an account?" : "Don't have an account?"}{" "}
           <span
             onClick={() => {
@@ -239,7 +239,7 @@ const AuthForm = () => {
               setError("");
               setSuccess("");
             }}
-            className="text-green-600 cursor-pointer font-semibold hover:underline"
+            className="cursor-pointer font-semibold text-[var(--theme-accent-deep)] hover:underline"
           >
             {isSignup ? "Login" : "Sign Up"}
           </span>
@@ -250,3 +250,4 @@ const AuthForm = () => {
 };
 
 export default AuthForm;
+

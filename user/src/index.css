@@ -2,6 +2,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 @import "tailwindcss";
 
+:root {
+  --theme-paper: #f6efe5;
+  --theme-paper-deep: #eadbc8;
+  --theme-card: #fffaf3;
+  --theme-mist: #ddebe5;
+  --theme-mist-strong: #c9ddd5;
+  --theme-ink: #2f403f;
+  --theme-muted: #6f746d;
+  --theme-accent: #4f7f7d;
+  --theme-accent-deep: #2d5d5b;
+  --theme-accent-soft: #87aba4;
+  --theme-line: #dccfbe;
+  --theme-shadow: rgba(91, 74, 55, 0.14);
+}
+
 html, body, #root {
   height: 100%;
   margin: 0;
@@ -12,37 +27,136 @@ html, body, #root {
   font-family: 'Poppins', sans-serif;
 }
 
-/* Ensuring consistent font size, padding, and margin */
 body {
-  font-family: 'Poppins', sans-serif; /* Ensure Poppins font is applied globally */
-  font-size: 1rem; /* Consistent font size */
-  line-height: 1.5; /* Ensure consistent line height */
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--theme-ink);
+  background:
+    radial-gradient(circle at top, rgba(79, 127, 125, 0.14), transparent 28%),
+    linear-gradient(180deg, var(--theme-paper) 0%, #f9f4ec 44%, #fffaf4 100%);
 }
 
 .navbar {
-  @apply text-xl font-semibold px-6 py-4 bg-white shadow-md; /* Ensure consistent size and padding */
+  @apply bg-white px-6 py-4 text-xl font-semibold shadow-md;
 }
 
 .navbar a {
-  @apply text-lg text-gray-800 hover:text-green-600; /* Navigation link style */
+  @apply text-lg text-gray-800;
+  color: var(--theme-ink);
 }
 
-/* To avoid any layout shifts, ensure the navbar has a fixed height */
 .navbar-fixed {
-  height: 64px; /* Fixed height for navbar */
+  height: 64px;
 }
 
-/* Adjustments to ensure consistency in profile page layout */
 .profile-page {
-  padding-top: 16px; /* Ensure proper spacing for profile page */
+  padding-top: 16px;
 }
+
 html {
   overflow-y: scroll;
 }
-/* fallback scrollbar for browsers without custom component */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #16a34a94 #f0fdfa;
+
+::selection {
+  background: rgba(79, 127, 125, 0.22);
+  color: var(--theme-ink);
 }
 
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(79, 127, 125, 0.72) #efe5d8;
+}
 
+.theme-page {
+  background:
+    radial-gradient(circle at top, rgba(79, 127, 125, 0.14), transparent 30%),
+    linear-gradient(180deg, var(--theme-paper) 0%, #f9f4ec 42%, #fffaf4 100%);
+  color: var(--theme-ink);
+}
+
+.theme-card {
+  background: rgba(255, 250, 243, 0.94);
+  border: 1px solid var(--theme-line);
+  box-shadow: 0 18px 48px var(--theme-shadow);
+}
+
+.theme-card-soft {
+  background: linear-gradient(180deg, #fffaf4 0%, #efe4d5 100%);
+  border: 1px solid var(--theme-line);
+  box-shadow: 0 18px 42px rgba(91, 74, 55, 0.11);
+}
+
+.theme-subtle-panel {
+  background: linear-gradient(180deg, rgba(221, 235, 229, 0.88), rgba(255, 250, 243, 0.95));
+  border: 1px solid rgba(79, 127, 125, 0.18);
+}
+
+.theme-input {
+  width: 100%;
+  border-radius: 1.125rem;
+  border: 1px solid var(--theme-line);
+  background: rgba(255, 252, 247, 0.96);
+  padding: 0.95rem 1.1rem;
+  color: var(--theme-ink);
+  box-shadow: inset 0 1px 2px rgba(63, 50, 38, 0.05);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.theme-input:focus {
+  outline: none;
+  border-color: var(--theme-accent-soft);
+  box-shadow: 0 0 0 4px rgba(79, 127, 125, 0.14);
+}
+
+.theme-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--theme-accent-deep), var(--theme-accent));
+  color: #ffffff;
+  box-shadow: 0 12px 28px rgba(45, 93, 91, 0.26);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.theme-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(45, 93, 91, 0.3);
+  filter: saturate(1.04);
+}
+
+.theme-button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(79, 127, 125, 0.2);
+  background: rgba(255, 250, 243, 0.95);
+  color: var(--theme-accent-deep);
+  box-shadow: 0 10px 24px rgba(91, 74, 55, 0.09);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.theme-button-secondary:hover {
+  transform: translateY(-2px);
+  border-color: rgba(79, 127, 125, 0.34);
+  box-shadow: 0 14px 28px rgba(91, 74, 55, 0.12);
+}
+
+.theme-accent-text {
+  color: var(--theme-accent-deep);
+}
+
+.theme-accent-soft-text {
+  color: var(--theme-accent);
+}
+
+.theme-table-head {
+  background: linear-gradient(135deg, var(--theme-accent-deep), var(--theme-accent));
+  color: #ffffff;
+}
+
+.theme-divider {
+  border-color: rgba(79, 127, 125, 0.16);
+}

@@ -81,7 +81,7 @@ const FoodDonationForm = () => {
             }
         } catch (error) {
             console.error("Submission error:", error);
-            toast.error(data.message || "Submission failed.");
+            toast.error("Submission failed.");
         }
     };
 
@@ -89,21 +89,21 @@ const FoodDonationForm = () => {
     return (
         <div>
             <ToastContainer />
-            <div className="bg-gradient-to-b from-green-50 to-white min-h-screen flex items-center justify-center py-8">
-                <div className="bg-gradient-to-b from-white to-green-100 mt-10 p-8 rounded-lg shadow-lg w-full max-w-2xl">
-                    <h1 className="text-3xl font-bold text-center text-black mb-6">
-                        Feeding <span className="text-[#06C167]">Futures</span>
+            <div className="theme-page flex min-h-screen items-center justify-center py-8">
+                <div className="theme-card-soft mt-10 w-full max-w-2xl rounded-[32px] p-8">
+                    <h1 className="mb-6 text-center text-3xl font-bold text-[var(--theme-ink)]">
+                        Nourish <span className="text-[var(--theme-accent-deep)]">Next</span>
                     </h1>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
-                            <label className="block text-lg font-medium text-black mb-2" htmlFor="foodname">
+                            <label className="mb-2 block text-lg font-medium text-[var(--theme-ink)]" htmlFor="foodname">
                                 Food Name:
                             </label>
                             <input
                                 type="text"
                                 id="foodname"
                                 name="foodname"
-                                className="w-full p-3 bg-gray-50 border border-green-500 focus:outline-none focus:ring-1 focus:ring-green-600 rounded-md"
+                                className="theme-input"
                                 value={formData.foodname}
                                 onChange={handleChange}
                                 required
@@ -111,7 +111,7 @@ const FoodDonationForm = () => {
                         </div>
 
                         <div className="mb-4">
-                            <label className="block text-lg font-medium text-black mb-2">Meal type:</label>
+                            <label className="mb-2 block text-lg font-medium text-[var(--theme-ink)]">Meal type:</label>
                             <div className="flex items-center">
                                 <input
                                     type="radio"
@@ -120,9 +120,9 @@ const FoodDonationForm = () => {
                                     value="veg"
                                     checked={formData.meal === 'veg'}
                                     onChange={handleChange}
-                                    className="mr-2"
+                                    className="mr-2 accent-[var(--theme-accent-deep)]"
                                 />
-                                <label htmlFor="veg" className="mr-6">Veg</label>
+                                <label htmlFor="veg" className="mr-6 text-[var(--theme-ink)]">Veg</label>
 
                                 <input
                                     type="radio"
@@ -131,15 +131,15 @@ const FoodDonationForm = () => {
                                     value="Non-veg"
                                     checked={formData.meal === 'Non-veg'}
                                     onChange={handleChange}
-                                    className="mr-2"
+                                    className="mr-2 accent-[var(--theme-accent-deep)]"
                                 />
-                                <label htmlFor="Non-veg">Non-veg</label>
+                                <label htmlFor="Non-veg" className="text-[var(--theme-ink)]">Non-veg</label>
                             </div>
                         </div>
 
                         <div className="mb-9 mt-9">
-                            <label className="block text-lg font-medium text-black mb-2">Select the Category:</label>
-                            <div className="flex justify-around">
+                            <label className="mb-2 block text-lg font-medium text-[var(--theme-ink)]">Select the Category:</label>
+                            <div className="flex flex-wrap justify-around gap-4">
                                 <label htmlFor="raw-food">
                                     <input
                                         type="radio"
@@ -153,7 +153,7 @@ const FoodDonationForm = () => {
                                     <img
                                         src="img/raw-food.png"
                                         alt="raw-food"
-                                        className={`w-40 cursor-pointer hover:scale-105  ${formData.category === 'raw-food' ? 'border-2 border-green-600 rounded-md' : ''}`}
+                                        className={`w-40 cursor-pointer rounded-[22px] border-2 border-transparent bg-[var(--theme-card)] p-1 shadow-md transition hover:scale-105 ${formData.category === 'raw-food' ? 'border-[var(--theme-accent-deep)] shadow-[0_14px_32px_rgba(45,93,91,0.22)]' : ''}`}
                                     />
                                 </label>
 
@@ -170,7 +170,7 @@ const FoodDonationForm = () => {
                                     <img
                                         src="img/cooked-food.png"
                                         alt="cooked-food"
-                                        className={`w-40 cursor-pointer hover:scale-105  ${formData.category === 'cooked-food' ? 'border-2 border-green-600 rounded-md' : ''}`}
+                                        className={`w-40 cursor-pointer rounded-[22px] border-2 border-transparent bg-[var(--theme-card)] p-1 shadow-md transition hover:scale-105 ${formData.category === 'cooked-food' ? 'border-[var(--theme-accent-deep)] shadow-[0_14px_32px_rgba(45,93,91,0.22)]' : ''}`}
                                     />
                                 </label>
 
@@ -187,14 +187,14 @@ const FoodDonationForm = () => {
                                     <img
                                         src="img/packed-food.png"
                                         alt="packed-food"
-                                        className={`w-40 cursor-pointer hover:scale-105 ${formData.category === 'packed-food' ? 'border-2 border-green-600 rounded-md' : ''}`}
+                                        className={`w-40 cursor-pointer rounded-[22px] border-2 border-transparent bg-[var(--theme-card)] p-1 shadow-md transition hover:scale-105 ${formData.category === 'packed-food' ? 'border-[var(--theme-accent-deep)] shadow-[0_14px_32px_rgba(45,93,91,0.22)]' : ''}`}
                                     />
                                 </label>
                             </div>
                         </div>
 
                         <div className="mb-12">
-                            <label className="block text-lg font-medium text-black mb-2" htmlFor="quantity">
+                            <label className="mb-2 block text-lg font-medium text-[var(--theme-ink)]" htmlFor="quantity">
                                 Quantity (number of persons / kg):
                             </label>
                             <input
@@ -203,24 +203,24 @@ const FoodDonationForm = () => {
                                 name="quantity"
                                 maxLength="5"
                                 pattern="^[0-9]{1,5}$"
-                                className="w-full p-3 bg-gray-50 border border-green-500 focus:outline-none focus:ring-1 focus:ring-green-600 rounded-md"
+                                className="theme-input"
                                 value={formData.quantity}
                                 onChange={handleChange}
                                 required
                             />
                         </div>
 
-                        <p className="text-center text-2xl text-gray-700 font-semibold mb-1">Contact Details</p>
+                        <p className="mb-3 text-center text-2xl font-semibold text-[var(--theme-accent-deep)]">Contact Details</p>
 
                         <div className="mb-4">
-                            <label className="block text-lg font-medium text-black mb-2" htmlFor="name">
+                            <label className="mb-2 block text-lg font-medium text-[var(--theme-ink)]" htmlFor="name">
                                 Name:
                             </label>
                             <input
                                 type="text"
                                 id="name"
                                 name="name"
-                                className="w-full p-3 bg-gray-50 border border-green-500 focus:outline-none focus:ring-1 focus:ring-green-600 rounded-md"
+                                className="theme-input"
                                 value={formData.name}
                                 onChange={handleChange}
                                 required
@@ -228,14 +228,14 @@ const FoodDonationForm = () => {
                         </div>
 
                         <div className="mb-4">
-                            <label className="block text-lg font-medium text-black mb-2" htmlFor="phoneno">
+                            <label className="mb-2 block text-lg font-medium text-[var(--theme-ink)]" htmlFor="phoneno">
                                 Phone No:
                             </label>
                             <input
                                 type="text"
                                 id="phoneno"
                                 name="phoneno"
-                                className="w-full p-3 bg-gray-50 border border-green-500 focus:outline-none focus:ring-1 focus:ring-green-600 rounded-md"
+                                className="theme-input"
                                 maxLength="10"
                                 pattern="[0-9]{10}"
                                 value={formData.phoneno}
@@ -245,13 +245,13 @@ const FoodDonationForm = () => {
                         </div>
 
                         <div className="mb-4">
-                            <label className="block text-lg font-medium text-black mb-2" htmlFor="district">
+                            <label className="mb-2 block text-lg font-medium text-[var(--theme-ink)]" htmlFor="district">
                                 District:
                             </label>
                             <select
                                 id="district"
                                 name="district"
-                                className="w-full p-3 bg-gray-50 border border-green-500 focus:outline-none focus:ring-1 focus:ring-green-600 rounded-md"
+                                className="theme-input"
                                 value={formData.district}
                                 onChange={handleChange}
                             >
@@ -263,14 +263,14 @@ const FoodDonationForm = () => {
                         </div>
 
                         <div className="mb-4">
-                            <label className="block text-lg font-medium text-black mb-2" htmlFor="address">
+                            <label className="mb-2 block text-lg font-medium text-[var(--theme-ink)]" htmlFor="address">
                                 Address:
                             </label>
                             <input
                                 type="text"
                                 id="address"
                                 name="address"
-                                className="w-full p-3 bg-gray-50 border border-green-500 focus:outline-none focus:ring-1 focus:ring-green-600 rounded-md"
+                                className="theme-input"
                                 value={formData.address}
                                 onChange={handleChange}
                                 required
@@ -280,7 +280,7 @@ const FoodDonationForm = () => {
                         <div className="mb-4 mt-10 flex justify-center">
                             <button
                                 type="submit"
-                                className="w-3/5 bg-green-600 text-white p-3 rounded-md text-lg hover:scale-105 hover:bg-green-700"
+                                className="theme-button w-3/5 rounded-[18px] p-3 text-lg"
                             >
                                 Submit
                             </button>
@@ -293,3 +293,4 @@ const FoodDonationForm = () => {
 };
 
 export default FoodDonationForm;
+

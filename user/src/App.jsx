@@ -5,11 +5,11 @@ import Signup from "./components/Signup.jsx";
 import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import Profile from "./pages/Profile.jsx";
+import Start from "./pages/Start.jsx";
 import FoodDonationForm from "./components/FoodDonationForm.jsx";
 import Footer from "./components/Footer.jsx";
 import Navbar from "./components/Navbar.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
-import DashboardLogins from "./pages/DashboardLogins.jsx";
 
 function App() {
   const [navActive, setNavActive] = useState(false);
@@ -23,7 +23,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/start" element={<DashboardLogins />} />
+        <Route path="/start" element={<Start />} />
         <Route path="/foodDonationForm" element={<FoodDonationForm />} />
       </Routes>
       <Footer />
