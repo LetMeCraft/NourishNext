@@ -24,7 +24,7 @@ const Home = () => {
           </style>
 
           <NavLink
-            to="/foodDonationForm"
+            to="/Start"
             className="theme-button hover-wiggle mt-1 inline-block rounded-[20px] border border-[rgba(79,127,125,0.18)] px-10 py-3 font-semibold uppercase tracking-widest"
           >
             Donate Food
