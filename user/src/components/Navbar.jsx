@@ -75,7 +75,7 @@ const Navbar = () => {
 
       <div className="flex flex-1 items-center justify-center md:flex-none md:justify-self-center">
         <nav
-          className={`nav-bar absolute left-0 top-18 w-full overflow-hidden bg-slate-700/95 backdrop-blur-sm transition-[height] duration-200 ease-in md:static md:w-auto md:bg-transparent md:flex md:items-center ${navActive ? "h-[180px]" : "h-0"} md:h-auto`}
+          className={`nav-bar absolute left-0 top-18 w-full overflow-y-auto bg-slate-700/95 backdrop-blur-sm transition-[max-height] duration-200 ease-in md:static md:w-auto md:overflow-visible md:bg-transparent md:flex md:items-center ${navActive ? "max-h-72" : "max-h-0"} md:max-h-none`}
         >
           <ul className="text-center text-lg text-white md:flex md:space-x-6 md:text-black">
             <li>

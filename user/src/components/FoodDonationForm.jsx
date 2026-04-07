@@ -2,9 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+const categoryOptions = [
+    {
+        value: 'raw-food',
+        label: 'Raw Food',
+        image: 'img/raw-food.png',
+    },
+    {
+        value: 'cooked-food',
+        label: 'Cooked Food',
+        image: 'img/cooked-food.png',
+    },
+    {
+        value: 'packed-food',
+        label: 'Packed Food',
+        image: 'img/packed-food.png',
+    },
+];
+
 const FoodDonationForm = () => {
     const navigate = useNavigate();
     const [userEmail, setUserEmail] = useState(localStorage.getItem("email"));
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Listen to changes in the localStorage for the userEmail
     useEffect(() => {
@@ -27,6 +47,13 @@ const FoodDonationForm = () => {
         }
     }, [userEmail, navigate]);
 
+    useEffect(() => {
+        setFormData((prevData) => ({
+            ...prevData,
+            email: userEmail || "",
+        }));
+    }, [userEmail]);
+
     const [formData, setFormData] = useState({
         foodname: '',
         meal: 'veg',
@@ -46,8 +73,17 @@ const FoodDonationForm = () => {
         }));
     };
 
+    const handleCategorySelect = (category) => {
+        setFormData((prevData) => ({
+            ...prevData,
+            category,
+        }));
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (isSubmitting) return;
+        setIsSubmitting(true);
 
         try {
             const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/food-donation`, {
@@ -82,6 +118,8 @@ const FoodDonationForm = () => {
         } catch (error) {
             console.error("Submission error:", error);
             toast.error("Submission failed.");
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -139,57 +177,37 @@ const FoodDonationForm = () => {
 
                         <div className="mb-9 mt-9">
                             <label className="mb-2 block text-lg font-medium text-[var(--theme-ink)]">Select the Category:</label>
-                            <div className="flex flex-wrap justify-around gap-4">
-                                <label htmlFor="raw-food">
-                                    <input
-                                        type="radio"
-                                        id="raw-food"
-                                        name="category"
-                                        value="raw-food"
-                                        checked={formData.category === 'raw-food'}
-                                        onChange={handleChange}
-                                        className="hidden"
-                                    />
-                                    <img
-                                        src="img/raw-food.png"
-                                        alt="raw-food"
-                                        className={`w-40 cursor-pointer rounded-[22px] border-2 border-transparent bg-[var(--theme-card)] p-1 shadow-md transition hover:scale-105 ${formData.category === 'raw-food' ? 'border-[var(--theme-accent-deep)] shadow-[0_14px_32px_rgba(45,93,91,0.22)]' : ''}`}
-                                    />
-                                </label>
+                            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                                {categoryOptions.map((option) => {
+                                    const isSelected = formData.category === option.value;
 
-                                <label htmlFor="cooked-food">
-                                    <input
-                                        type="radio"
-                                        id="cooked-food"
-                                        name="category"
-                                        value="cooked-food"
-                                        checked={formData.category === 'cooked-food'}
-                                        onChange={handleChange}
-                                        className="hidden"
-                                    />
-                                    <img
-                                        src="img/cooked-food.png"
-                                        alt="cooked-food"
-                                        className={`w-40 cursor-pointer rounded-[22px] border-2 border-transparent bg-[var(--theme-card)] p-1 shadow-md transition hover:scale-105 ${formData.category === 'cooked-food' ? 'border-[var(--theme-accent-deep)] shadow-[0_14px_32px_rgba(45,93,91,0.22)]' : ''}`}
-                                    />
-                                </label>
-
-                                <label htmlFor="packed-food">
-                                    <input
-                                        type="radio"
-                                        id="packed-food"
-                                        name="category"
-                                        value="packed-food"
-                                        checked={formData.category === 'packed-food'}
-                                        onChange={handleChange}
-                                        className="hidden"
-                                    />
-                                    <img
-                                        src="img/packed-food.png"
-                                        alt="packed-food"
-                                        className={`w-40 cursor-pointer rounded-[22px] border-2 border-transparent bg-[var(--theme-card)] p-1 shadow-md transition hover:scale-105 ${formData.category === 'packed-food' ? 'border-[var(--theme-accent-deep)] shadow-[0_14px_32px_rgba(45,93,91,0.22)]' : ''}`}
-                                    />
-                                </label>
+                                    return (
+                                        <button
+                                            key={option.value}
+                                            type="button"
+                                            onClick={() => handleCategorySelect(option.value)}
+                                            className={`rounded-[24px] border-2 p-2 text-left transition-all ${
+                                                isSelected
+                                                    ? 'border-[var(--theme-accent-deep)] bg-[rgba(221,235,229,0.72)] shadow-[0_14px_32px_rgba(45,93,91,0.22)]'
+                                                    : 'border-transparent bg-[var(--theme-card)] shadow-md hover:-translate-y-0.5 hover:border-[rgba(79,127,125,0.2)]'
+                                            }`}
+                                            aria-pressed={isSelected}
+                                        >
+                                            <img
+                                                src={option.image}
+                                                alt={option.label}
+                                                className="h-36 w-full rounded-[18px] object-cover"
+                                            />
+                                            <p className={`px-2 pb-1 pt-3 text-center text-sm font-semibold uppercase tracking-[0.16em] ${
+                                                isSelected
+                                                    ? 'text-[var(--theme-accent-deep)]'
+                                                    : 'text-[var(--theme-ink)]'
+                                            }`}>
+                                                {option.label}
+                                            </p>
+                                        </button>
+                                    );
+                                })}
                             </div>
                         </div>
 
@@ -280,9 +298,11 @@ const FoodDonationForm = () => {
                         <div className="mb-4 mt-10 flex justify-center">
                             <button
                                 type="submit"
-                                className="theme-button w-3/5 rounded-[18px] p-3 text-lg"
+                                disabled={isSubmitting}
+                                aria-busy={isSubmitting}
+                                className="theme-button w-3/5 rounded-[18px] p-3 text-lg disabled:cursor-not-allowed disabled:opacity-75"
                             >
-                                Submit
+                                {isSubmitting ? "Submitting..." : "Submit"}
                             </button>
                         </div>
                     </form>

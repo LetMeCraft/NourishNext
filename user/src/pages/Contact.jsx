@@ -18,7 +18,7 @@ const accordionData = [
         <p>
           1) Click on{" "}
           <NavLink
-            to="/foodDonationForm"
+            to="/donate"
             className="text-base text-[var(--theme-accent-deep)] underline transition-colors hover:text-[var(--theme-accent)]"
           >
             donate

@@ -23,6 +23,10 @@ html, body, #root {
   padding: 0;
 }
 
+#root {
+  min-height: 100dvh;
+}
+
 .font-poppins {
   font-family: 'Poppins', sans-serif;
 }
@@ -32,6 +36,9 @@ body {
   font-size: 1rem;
   line-height: 1.5;
   color: var(--theme-ink);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overscroll-behavior-x: none;
   background:
     radial-gradient(circle at top, rgba(79, 127, 125, 0.14), transparent 28%),
     linear-gradient(180deg, var(--theme-paper) 0%, #f9f4ec 44%, #fffaf4 100%);
@@ -68,7 +75,21 @@ html {
   scrollbar-color: rgba(79, 127, 125, 0.72) #efe5d8;
 }
 
+img,
+svg {
+  max-width: 100%;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
+
 .theme-page {
+  min-height: 100dvh;
   background:
     radial-gradient(circle at top, rgba(79, 127, 125, 0.14), transparent 30%),
     linear-gradient(180deg, var(--theme-paper) 0%, #f9f4ec 42%, #fffaf4 100%);

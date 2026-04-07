@@ -11,7 +11,7 @@ const About = () => {
         className="mx-auto mt-15 flex max-w-7xl flex-col items-center gap-12 px-6 md:px-12 lg:flex-row lg:px-24"
       >
         <div className="space-y-6 lg:w-1/2">
-          <h1 className="whitespace-nowrap text-4xl font-extrabold leading-tight text-[var(--theme-ink)] md:text-5xl">
+          <h1 className="text-4xl font-extrabold leading-tight text-[var(--theme-ink)] md:text-5xl">
             About <span className="text-[var(--theme-accent-deep)]">Nourish Next</span>
           </h1>
 
@@ -105,7 +105,7 @@ const About = () => {
             Food waste is a major global crisis while millions suffer from hunger
             daily, nearly one-third of all food produced is discarded, wasting
             vital resources like water, energy, and labor, and contributing
-            significantly to climate change. At Feeding Futures, we tackle this
+            significantly to climate change. At Nourish Next, we tackle this
             issue head-on by rescuing surplus food and efficiently redirecting it
             to those in need through real-time tracking and smart logistics.
           </p>

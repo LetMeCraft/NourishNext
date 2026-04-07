@@ -18,13 +18,15 @@ Create a Vercel project with:
 Set these environment variables:
 
 - `MONGO_URI`
+- `MONGO_DB_NAME`
 - `FRONTEND_URLS`
 - `ALLOW_VERCEL_PREVIEWS`
 
 Example:
 
 ```text
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/nourish-next
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/?retryWrites=true&w=majority
+MONGO_DB_NAME=nourish_next
 FRONTEND_URLS=https://your-user-app.vercel.app
 ALLOW_VERCEL_PREVIEWS=true
 ```

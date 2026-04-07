@@ -24,6 +24,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/start" element={<Start />} />
+        <Route path="/donate" element={<FoodDonationForm />} />
+        <Route path="/food-donation" element={<FoodDonationForm />} />
         <Route path="/foodDonationForm" element={<FoodDonationForm />} />
       </Routes>
       <Footer />

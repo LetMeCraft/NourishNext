@@ -6,8 +6,8 @@ const Footer = () => {
     <footer className="border-t border-[rgba(79,127,125,0.16)] bg-[linear-gradient(180deg,#335f5e_0%,#284a4a_100%)] px-4 py-5 text-sm text-[#f3ebdf] md:px-10">
       <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
         <div className="text-center md:text-left">
-          <h2 className="select-none text-2xl font-extrabold text-[var(--theme-ink)] sm:text-3xl md:whitespace-nowrap">
-            Nourish <span className="text-[#dfeee7]">Next</span>
+          <h2 className="select-none text-2xl font-extrabold text-[#eef5f0] sm:text-3xl md:whitespace-nowrap">
+            Nourish <span className="text-[#fffaf3]">Next</span>
           </h2>
         </div>
 

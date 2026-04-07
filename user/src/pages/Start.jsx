@@ -3,6 +3,9 @@ import { Bike, ShieldCheck, UserRound } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const Start = () => {
+  const adminDashboardUrl = import.meta.env.VITE_API_ADMIN || "http://localhost:5174";
+  const deliveryDashboardUrl = import.meta.env.VITE_API_DELIVERY || "http://localhost:5175";
+
   const dashboards = [
     {
       title: "User",
@@ -20,7 +23,7 @@ const Start = () => {
       highlights: ["Monitor donations", "Review dashboard activity", "Manage platform flow"],
       actionLabel: "Get Started",
       kind: "external",
-      target: import.meta.env.VITE_API_ADMIN,
+      target: adminDashboardUrl,
     },
     {
       title: "Delivery",
@@ -29,7 +32,7 @@ const Start = () => {
       highlights: ["View assigned orders", "Check delivery flow", "Support smooth logistics"],
       actionLabel: "Get Started",
       kind: "external",
-      target: import.meta.env.VITE_API_DELIVERY,
+      target: deliveryDashboardUrl,
     },
   ];
 
@@ -40,7 +43,7 @@ const Start = () => {
           {dashboards.map(({ title, icon, description, highlights, actionLabel, kind, target }) => (
             <div
               key={title}
-              className="theme-card flex h-full min-h-[560px] flex-col rounded-[30px] p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_26px_58px_rgba(91,74,55,0.16)]"
+              className="theme-card flex h-full min-h-[480px] flex-col rounded-[30px] p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_26px_58px_rgba(91,74,55,0.16)] sm:min-h-[520px] sm:p-7 xl:min-h-[560px]"
             >
               <div className="grid min-h-[92px] grid-cols-[auto_1fr] items-start gap-4">
                 <div className="rounded-[20px] border border-[rgba(79,127,125,0.18)] bg-[linear-gradient(180deg,rgba(221,235,229,0.92)_0%,rgba(255,250,243,0.96)_100%)] p-4 text-[var(--theme-accent-deep)] shadow-sm">
@@ -50,11 +53,11 @@ const Start = () => {
                   <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[var(--theme-accent)]">
                     {title} Dashboard
                   </p>
-                  <h2 className="mt-1 text-[2.6rem] leading-none font-bold text-[var(--theme-ink)]">{title}</h2>
+                  <h2 className="mt-1 text-[2.2rem] leading-none font-bold text-[var(--theme-ink)] sm:text-[2.6rem]">{title}</h2>
                 </div>
               </div>
 
-              <p className="mt-6 min-h-[108px] text-base leading-8 text-[var(--theme-muted)]">{description}</p>
+              <p className="mt-6 text-base leading-8 text-[var(--theme-muted)] sm:min-h-[108px]">{description}</p>
 
               <div className="theme-subtle-panel mt-6 flex flex-1 flex-col rounded-[24px] px-5 py-5">
                 <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--theme-accent-deep)]">

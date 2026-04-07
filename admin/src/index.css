@@ -1,0 +1,197 @@
+/* Global CSS */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import "tailwindcss";
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Ensuring consistent font size, padding, and margin */
+body {
+  font-family: 'Poppins', sans-serif; /* Ensure Poppins font is applied globally */
+  font-size: 1rem; /* Consistent font size */
+  line-height: 1.5; /* Ensure consistent line height */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overscroll-behavior-x: none;
+  opacity: 1;
+  transition: opacity 220ms ease;
+}
+
+body.admin-logout-fade {
+  opacity: 0;
+}
+
+/* fallback scrollbar for browsers without custom component */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #024a71 #0f172b;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
+
+@keyframes adminFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes adminSoftPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(56, 189, 248, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 24px rgba(56, 189, 248, 0.12);
+  }
+}
+
+.admin-page {
+  animation: adminFadeUp 0.45s ease-out;
+}
+
+.admin-fade-up {
+  animation: adminFadeUp 0.55s ease-out both;
+}
+
+.admin-card {
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease,
+    background-color 0.28s ease;
+}
+
+.admin-card:hover {
+  transform: translateY(-4px);
+}
+
+.admin-table-shell {
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+}
+
+.admin-table-shell:hover {
+  transform: translateY(-2px);
+}
+
+.admin-interactive {
+  transition:
+    transform 0.22s ease,
+    opacity 0.22s ease,
+    background-color 0.22s ease,
+    color 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.admin-interactive:hover {
+  transform: translateY(-1px);
+}
+
+/* Hide browser-provided password reveal icons so only the custom eye button shows */
+.admin-password-input::-ms-reveal,
+.admin-password-input::-ms-clear {
+  display: none;
+}
+
+.admin-glow {
+  animation: adminSoftPulse 3.8s ease-in-out infinite;
+}
+
+@keyframes adminShimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.admin-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(148, 163, 184, 0.16) 25%,
+    rgba(226, 232, 240, 0.5) 37%,
+    rgba(148, 163, 184, 0.16) 63%
+  );
+  background-size: 200% 100%;
+  animation: adminShimmer 1.4s linear infinite;
+}
+
+.dark .admin-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(51, 65, 85, 0.58) 25%,
+    rgba(71, 85, 105, 0.9) 37%,
+    rgba(51, 65, 85, 0.58) 63%
+  );
+  background-size: 200% 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .admin-page,
+  .admin-fade-up,
+  .admin-glow {
+    animation: none;
+  }
+
+  .admin-card,
+  .admin-table-shell,
+  .admin-interactive {
+    transition: none;
+  }
+
+  .admin-card:hover,
+  .admin-table-shell:hover,
+  .admin-interactive:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .admin-card:hover,
+  .admin-table-shell:hover,
+  .admin-interactive:hover {
+    transform: none;
+  }
+}
