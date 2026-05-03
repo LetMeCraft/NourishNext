@@ -15,7 +15,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 const mainAppUrl =
   import.meta.env.VITE_MAIN_APP_URL ||
-  "http://localhost:5173/start";
+  "https://nourish-next-user.vercel.app/start";
 
 const Header = ({ isLoggedIn = false, onLogout }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
