@@ -1,4 +1,6 @@
+# Added by request
 node_modules
 dist
 *.env
 npm-debug.log*
+
