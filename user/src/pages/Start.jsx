@@ -3,7 +3,7 @@ import { Bike, ShieldCheck, UserRound } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const Start = () => {
-  const adminDashboardUrl = import.meta.env.VITE_API_ADMIN || "http://localhost:5174";
+  const adminDashboardUrl = import.meta.env.VITE_API_ADMIN || "https://nourish-next-admin.vercel.app/login";
   const deliveryDashboardUrl = import.meta.env.VITE_API_DELIVERY || "https://nourish-next-delivery.vercel.app/about";
 
   const dashboards = [

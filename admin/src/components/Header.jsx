@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "./AppContext";
 
 const mainAppUrl =
-  import.meta.env.VITE_MAIN_APP_URL || "http://localhost:5173/start";
+  import.meta.env.VITE_MAIN_APP_URL || "https://nourish-next-user.vercel.app/start";
 
 const getStoredAdminName = () =>
   localStorage.getItem("name") || sessionStorage.getItem("name") || "Arpit Sharma";

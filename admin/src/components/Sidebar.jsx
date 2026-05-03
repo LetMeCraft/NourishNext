@@ -4,7 +4,7 @@ import { Home, BarChart, Users, MessageSquare, Briefcase, Menu, Sun, Moon, LogOu
 import { AppContext } from './AppContext';
 
 const mainAppUrl =
-  import.meta.env.VITE_MAIN_APP_URL || "http://localhost:5173/start";
+  import.meta.env.VITE_MAIN_APP_URL || "https://nourish-next-user.vercel.app/start";
 
 const Sidebar = () => {
   const location = useLocation();

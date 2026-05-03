@@ -19,7 +19,7 @@ const apiBaseUrl =
   import.meta.env.VITE_API_URL ||
   "http://localhost:5000";
 const mainAppUrl =
-  import.meta.env.VITE_MAIN_APP_URL || "http://localhost:5173/start";
+  import.meta.env.VITE_MAIN_APP_URL || "https://nourish-next-user.vercel.app/start";
 const defaultAdminEmail = import.meta.env.VITE_ADMIN_EMAIL || "admin@nourishnext.local";
 const defaultAdminPassword = import.meta.env.VITE_ADMIN_PASSWORD || "admin123";
 
