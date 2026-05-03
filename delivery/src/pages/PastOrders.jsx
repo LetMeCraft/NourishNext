@@ -3,8 +3,8 @@ import { FaStar } from "react-icons/fa";
 import { PastOrdersSkeleton } from "../components/Skeletons.jsx";
 
 const DetailRow = ({ label, value, valueClassName = "" }) => (
-  <div className="flex flex-col gap-0.5 sm:flex-row sm:gap-1">
-    <span className="font-semibold text-gray-700 sm:shrink-0">{label} :</span>
+  <div className="grid gap-0.5 rounded-xl border border-white/55 bg-white/35 px-3 py-2 sm:grid-cols-[7rem_1fr] sm:gap-3">
+    <span className="text-[0.78rem] font-semibold uppercase tracking-[0.08em] text-slate-500">{label}</span>
     <span className={`break-words text-gray-600 ${valueClassName}`}>{value || "—"}</span>
   </div>
 );
@@ -188,18 +188,10 @@ const PastOrder = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-tl from-sky-100 via-indigo-100 to-green-100">
-      <div className="mx-auto max-w-5xl p-4 sm:p-6">
-        <div className="mb-6 px-4">
-          <div className="text-center">
-            <div className="inline-block">
-              <p className="text-[1.7rem] font-bold tracking-[0.06em] text-sky-800 sm:text-[2.15rem]">
-                History
-              </p>
-              <div className="mt-1 h-0.5 w-full rounded-full bg-sky-700/50" />
-            </div>
-          </div>
+      <div className="mx-auto max-w-5xl px-4 py-7 sm:px-6 sm:py-9">
+        <div className="mb-5">
           {orders.length > 0 && (
-            <p className="mt-6 pl-3 text-left text-sm font-medium text-gray-600 sm:pl-6">
+            <p className="inline-flex rounded-full border border-white/80 bg-white/55 px-4 py-2 text-sm font-medium text-slate-600 shadow-[0_12px_28px_rgba(15,23,42,0.07)] backdrop-blur">
               Total Collected Orders:{" "}
               <span className="text-indigo-600 font-semibold">
                 {orders.length}
@@ -208,30 +200,36 @@ const PastOrder = () => {
           )}
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
           {orders.length === 0 ? (
-            <p className="text-center text-gray-500">
-              No collected orders found for {yourEmail}.
-            </p>
+            <div className="rounded-2xl border border-white/80 bg-white/45 px-6 py-12 text-center shadow-[0_16px_36px_rgba(15,23,42,0.08)] backdrop-blur">
+              <p className="text-base font-semibold text-slate-700">No completed orders yet</p>
+              <p className="mt-1 text-sm text-slate-500">Collected orders for {yourEmail} will appear here.</p>
+            </div>
           ) : (
             orders.map((order, index) => (
               <div
                 key={order._id}
-                className="bg-slate-100 border-2 border-white rounded-lg shadow-sm overflow-hidden"
+                className="overflow-hidden rounded-2xl border border-white/90 bg-white/60 shadow-[0_18px_42px_rgba(15,23,42,0.09)] backdrop-blur transition hover:-translate-y-0.5 hover:shadow-[0_22px_48px_rgba(15,23,42,0.12)]"
               >
                 <div className="flex flex-col md:flex-row">
                   {/* Left Section */}
                   <div className="flex-1 p-4 sm:p-6">
-                    <div className="mb-4 flex items-start gap-3">
-                      <span className="text-sky-500 font-semibold text-lg mr-3">
+                    <div className="mb-5 flex items-start gap-3">
+                      <span className="mt-0.5 inline-flex h-9 min-w-9 items-center justify-center rounded-xl bg-emerald-100 text-base font-bold text-emerald-700 shadow-sm">
                         #{index + 1}
                       </span>
-                      <h3 className="min-w-0 break-words text-xl font-bold text-indigo-600">
-                        {order.foodname}
-                      </h3>
+                      <div className="min-w-0">
+                        <h3 className="break-words text-xl font-bold leading-snug text-indigo-700">
+                          {order.foodname}
+                        </h3>
+                        <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
+                          Completed pickup
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="space-y-2 text-sm">
+                    <div className="grid gap-2 text-sm">
                       <DetailRow label="Meal" value={order.meal} />
                       <DetailRow label="Category" value={order.category} />
                       <DetailRow label="Quantity" value={`${order.quantity} kg`} />
@@ -245,16 +243,16 @@ const PastOrder = () => {
                       />
                     </div>
 
-                    <div className="mt-6 flex flex-wrap items-center gap-2 text-lg">
-                      <span className="text-sm font-semibold text-gray-700">
-                        Current Status :
+                    <div className="mt-5 flex flex-wrap items-center gap-2">
+                      <span className="text-sm font-semibold text-slate-600">
+                        Current Status
                       </span>
                       <span
-                        className={`px-3 py-1 rounded-full text-sm font-medium ${order.status === "Collected"
-                            ? "bg-green-100 text-green-600"
+                        className={`rounded-full px-3 py-1 text-sm font-semibold shadow-sm ${order.status === "Collected"
+                            ? "bg-emerald-100 text-emerald-700"
                             : order.status === "Pending"
-                              ? "bg-yellow-100 text-yellow-600"
-                              : "bg-blue-100 text-blue-600"
+                              ? "bg-amber-100 text-amber-700"
+                              : "bg-sky-100 text-sky-700"
                           }`}
                       >
                         {order.status}
@@ -263,20 +261,20 @@ const PastOrder = () => {
                   </div>
 
                   {/* Right Section */}
-                  <div className="w-full border-t border-white/70 p-4 sm:p-6 md:w-[38%] md:border-l md:border-t-0 lg:w-[34%]">
+                  <div className="w-full border-t border-white/70 bg-slate-50/45 p-4 sm:p-6 md:w-[38%] md:border-l md:border-t-0 lg:w-[34%]">
                     <div className="flex h-full flex-col justify-between gap-5 items-start md:items-end">
-                      <div className="mb-6 flex flex-col items-start md:items-end">
-                        <h4 className="text-lg font-bold text-indigo-700 ">
+                      <div className="flex w-full flex-col rounded-2xl border border-white/70 bg-white/45 px-4 py-3 md:items-end">
+                        <h4 className="break-words text-lg font-bold text-indigo-700">
                           {order.name}
                         </h4>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-slate-500">
                           {formatDate(order.createdAt)}
                         </p>
                       </div>
 
                       {/* ⭐ Rating Section */}
                       <div
-                        className="flex flex-col items-start space-y-2 font-semibold text-yellow-500 md:items-end"
+                        className="flex w-full flex-col items-start space-y-2 rounded-2xl border border-white/70 bg-white/40 px-4 py-4 font-semibold text-yellow-500 md:items-end"
                         data-rating-box={order._id}
                       >
                         {submittedRatings[order._id] ? (
@@ -297,7 +295,7 @@ const PastOrder = () => {
                         ) : activeRatingOrderId !== order._id ? (
                           <button
                             onClick={() => handleShowRating(order._id)}
-                            className="text-sm px-4 py-1 bg-yellow-100 border border-yellow-400 text-yellow-700 rounded-lg hover:bg-yellow-200 transition"
+                            className="rounded-xl border border-yellow-300 bg-yellow-100 px-4 py-2 text-sm text-yellow-700 shadow-sm transition hover:bg-yellow-200"
                           >
                             ⭐ Give Rating
                           </button>

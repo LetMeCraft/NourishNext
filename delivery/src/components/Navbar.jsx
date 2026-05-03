@@ -139,7 +139,7 @@ const Header = ({ isLoggedIn = false, onLogout }) => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b-1 border-white bg-transparent shadow-lg backdrop-blur-2xl overflow-x-clip">
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16">
-        <div className="flex h-16 items-center justify-between md:grid md:grid-cols-[auto_1fr_auto] md:gap-6">
+        <div className="flex h-16 items-center justify-between md:grid md:grid-cols-[auto_1fr] md:gap-6">
           <div
             className="min-w-0 flex-shrink text-xl font-extrabold text-gray-800 cursor-pointer sm:text-2xl md:justify-self-start md:whitespace-nowrap"
             onClick={() => navigate(isLoggedIn ? "/orders" : "/")}
@@ -147,23 +147,25 @@ const Header = ({ isLoggedIn = false, onLogout }) => {
             Nourish <b className="text-emerald-500">Next</b>
           </div>
 
-          <nav className="hidden items-center justify-center space-x-6 md:flex">
-            {activeNavItems.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => navigate(item.path)}
-                className={getLinkClass(item.path)}
-              >
-                <item.icon className="w-4 h-4 mr-1" />
-                {item.name}
-              </button>
-            ))}
+          <nav className="hidden min-w-0 items-center justify-end gap-5 md:flex">
+            <div className="flex items-center gap-3 lg:gap-5">
+              {activeNavItems.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => navigate(item.path)}
+                  className={getLinkClass(item.path)}
+                >
+                  <item.icon className="w-4 h-4 mr-1" />
+                  {item.name}
+                </button>
+              ))}
+            </div>
 
-            <div className="flex items-center space-x-4 md:justify-self-end">
+            <div className="flex items-center gap-3 border-l border-slate-200/80 pl-4 lg:gap-4 lg:pl-5">
               {!isLoggedIn && !isSignupPage && (
                 <button
                   onClick={() => navigate("/signup")}
-                  className="ml-2 bg-emerald-500 text-sm text-white font-semibold px-4 py-2 rounded-md shadow hover:bg-emerald-600 transition"
+                  className="bg-emerald-500 text-sm text-white font-semibold px-4 py-2 rounded-md shadow hover:bg-emerald-600 transition"
                 >
                   <UserPlus className="w-4 h-4 inline-block mr-1" />
                   Join Us
@@ -173,7 +175,7 @@ const Header = ({ isLoggedIn = false, onLogout }) => {
               {(!isLoggedIn || isSignupPage) && (
                 <button
                   onClick={goToAdminUserLogin}
-                  className="ml-3 bg-gradient-to-tl from-sky-500 via-indigo-500 to-blue-700 text-white text-sm font-semibold px-4 py-2 rounded-md shadow hover:bg-blue-600 transition"
+                  className="bg-gradient-to-tl from-sky-500 via-indigo-500 to-blue-700 text-white text-sm font-semibold px-4 py-2 rounded-md shadow hover:bg-blue-600 transition"
                 >
                   <LogIn className="w-5 h-5 text-red-400 inline-block mr-2" />
                   Go To Start Page
@@ -182,7 +184,7 @@ const Header = ({ isLoggedIn = false, onLogout }) => {
 
               {isLoggedIn && (
                 <>
-                  <span className="text-sm font-semibold text-gray-700 ml-4">
+                  <span className="max-w-[11rem] truncate text-sm font-semibold text-gray-700">
                     Hi, {userName || "User"}
                   </span>
                   <div className="relative" ref={logoutConfirmRef}>

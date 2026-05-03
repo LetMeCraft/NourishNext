@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { OrdersSkeleton } from "../components/Skeletons.jsx";
 
 const DetailRow = ({ label, value, valueClassName = "" }) => (
-  <div className="flex flex-col gap-0.5 sm:flex-row sm:gap-1">
-    <span className="font-semibold text-gray-700 sm:shrink-0">{label} :</span>
+  <div className="grid gap-0.5 rounded-xl border border-white/55 bg-white/35 px-3 py-2 sm:grid-cols-[7rem_1fr] sm:gap-3">
+    <span className="text-[0.78rem] font-semibold uppercase tracking-[0.08em] text-slate-500">{label}</span>
     <span className={`break-words text-gray-600 ${valueClassName}`}>{value || "—"}</span>
   </div>
 );
@@ -354,9 +354,6 @@ useEffect(() => {
     return new Date(dateString).toLocaleString(undefined, options);
   };
 
-  const pageTitle =
-    selectedStatus === "All" ? "Orders" : selectedStatus;
-
   return (
     <div className="min-h-screen bg-gradient-to-tl from-sky-100 via-indigo-100 to-green-100 relative">
       {/* Inline info message */}
@@ -399,28 +396,18 @@ useEffect(() => {
         </div>
       )}
 
-      <div className="mx-auto max-w-6xl p-4 sm:p-6">
+      <div className="mx-auto max-w-6xl px-4 py-7 sm:px-6 sm:py-9">
         {!deliveryPartner && (
-          <div className="mb-4 rounded-lg border border-indigo-200 bg-indigo-50 px-4 py-3 text-sm font-medium text-indigo-700">
+          <div className="mb-4 rounded-2xl border border-indigo-200/80 bg-indigo-50/85 px-4 py-3 text-sm font-medium text-indigo-700 shadow-[0_12px_28px_rgba(79,70,229,0.08)]">
             You are viewing orders as a guest. Sign in to accept or update an order.
           </div>
         )}
 
-        {/* Title */}
-        <div className="flex justify-center px-4">
-          <div className="pb-6 pt-2 text-center sm:pb-8 sm:pt-3">
-            <p className="text-[1.7rem] font-bold tracking-[0.06em] text-sky-800 sm:text-[2.15rem]">
-              {pageTitle}
-            </p>
-            <div className="mx-auto mt-1 mb-3 h-0.5 w-full max-w-[18rem] rounded-full bg-sky-700/50 sm:max-w-[22rem]" />
-          </div>
-        </div>
-
         {/* Filters */}
-        <div className="mb-6 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mb-6 rounded-2xl border border-white/75 bg-white/45 p-3 shadow-[0_18px_42px_rgba(15,23,42,0.09)] backdrop-blur sm:flex sm:items-center sm:justify-between sm:gap-4 sm:p-4">
           {/* Location Toggle */}
           <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-            <span className="text-sm font-medium text-gray-700">Show:</span>
+            <span className="text-sm font-semibold text-slate-700">Show:</span>
             <div
               onClick={() =>
                 setLocationFilter(locationFilter === "All" ? "Nearby" : "All")
@@ -445,47 +432,66 @@ useEffect(() => {
           </div>
 
           {/* Status Filter */}
-          <div className="w-full overflow-x-auto pb-1 sm:w-auto">
+          <div className="mt-4 w-full overflow-x-auto pb-1 sm:mt-0 sm:w-auto">
             <div className="flex min-w-max gap-2">
-              {["All", "Pending", "Processing"].map((status) => (
-                <button
-                  key={status}
-                  onClick={() => setSelectedStatus(status)}
-                  className={`px-4 py-2 rounded-md border border-white text-sm font-medium transition-all ${selectedStatus === status
-                    ? "bg-indigo-600 text-white"
-                    : "bg-slate-200 hover:bg-gradient-to-tr hover:from-sky-200 hover:to-green-100"
-                    }`}
-                >
-                  {status}
-                </button>
-              ))}
+              {["All", "Processing", "Completed"].map((status) => {
+                const isActive = selectedStatus === status;
+
+                return (
+                  <button
+                    key={status}
+                    onClick={() => {
+                      if (status === "Completed") {
+                        navigate("/past-orders");
+                        return;
+                      }
+
+                      setSelectedStatus(status);
+                    }}
+                    className={`rounded-xl border px-4 py-2 text-sm font-semibold transition-all ${isActive
+                      ? "border-indigo-500 bg-indigo-600 text-white shadow-[0_10px_22px_rgba(79,70,229,0.22)]"
+                      : "border-white/80 bg-white/55 text-slate-700 hover:border-emerald-200 hover:bg-emerald-50"
+                      }`}
+                  >
+                    {status}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
 
         {/* Orders List */}
-        <div className="space-y-6">
+        <div className="space-y-5">
           {filteredOrders.length === 0 ? (
-            <p className="text-center text-gray-500">No orders found.</p>
+            <div className="rounded-2xl border border-white/80 bg-white/45 px-6 py-12 text-center shadow-[0_16px_36px_rgba(15,23,42,0.08)] backdrop-blur">
+              <p className="text-base font-semibold text-slate-700">No orders found</p>
+              <p className="mt-1 text-sm text-slate-500">Try switching the status or location filter.</p>
+            </div>
           ) : (
             filteredOrders.map((order, index) => (
               <div
                 key={order._id}
-                className="bg-slate-100 border-2 border-white rounded-lg shadow-sm overflow-hidden"
+                className="overflow-hidden rounded-2xl border border-white/90 bg-white/60 shadow-[0_18px_42px_rgba(15,23,42,0.09)] backdrop-blur transition hover:-translate-y-0.5 hover:shadow-[0_22px_48px_rgba(15,23,42,0.12)]"
               >
                 <div className="flex flex-col md:flex-row">
                   {/* Left Section - Order Details */}
                   <div className="flex-1 p-4 sm:p-6">
-                    <div className="mb-4 flex items-start gap-3">
-                      <span className="text-sky-500 font-semibold text-lg mr-3">
+                    <div className="mb-5 flex items-start gap-3">
+                      <span className="mt-0.5 inline-flex h-9 min-w-9 items-center justify-center rounded-xl bg-sky-100 text-base font-bold text-sky-600 shadow-sm">
                         #{index + 1}
                       </span>
-                      <h3 className="min-w-0 break-words text-xl font-bold text-indigo-600">
-                        {order.foodname}
-                      </h3>
+                      <div className="min-w-0">
+                        <h3 className="break-words text-xl font-bold leading-snug text-indigo-700">
+                          {order.foodname}
+                        </h3>
+                        <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
+                          Pickup request
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="space-y-2 text-sm">
+                    <div className="grid gap-2 text-sm">
                       <DetailRow label="Meal" value={order.meal} />
                       <DetailRow label="Category" value={order.category} />
                       <DetailRow label="Quantity" value={`${order.quantity} kg`} />
@@ -499,16 +505,16 @@ useEffect(() => {
                       />
                     </div>
 
-                    <div className="mt-6 flex flex-wrap items-center gap-2 text-lg">
-                      <span className="mb-1 block text-sm font-semibold text-gray-700 sm:mb-0">
-                        Current Status :
+                    <div className="mt-5 flex flex-wrap items-center gap-2">
+                      <span className="text-sm font-semibold text-slate-600">
+                        Current Status
                       </span>
                       <span
-                        className={`px-3 py-1 rounded-full text-sm font-medium ${order.status === "Collected"
-                          ? "bg-green-100 text-green-600"
+                        className={`rounded-full px-3 py-1 text-sm font-semibold shadow-sm ${order.status === "Collected"
+                          ? "bg-emerald-100 text-emerald-700"
                           : order.status === "Pending"
-                            ? "bg-yellow-100 text-yellow-600"
-                            : "bg-blue-100 text-blue-600"
+                            ? "bg-amber-100 text-amber-700"
+                            : "bg-sky-100 text-sky-700"
                           }`}
                       >
                         {order.status}
@@ -517,18 +523,18 @@ useEffect(() => {
                   </div>
 
                   {/* Right Section */}
-                  <div className="w-full border-t border-white/70 p-4 sm:p-6 md:w-[38%] md:border-l md:border-t-0 lg:w-[34%]">
+                  <div className="w-full border-t border-white/70 bg-slate-50/45 p-4 sm:p-6 md:w-[38%] md:border-l md:border-t-0 lg:w-[34%]">
                     <div className="flex h-full flex-col justify-between gap-5 items-start md:items-end">
-                      <div className="mb-6 flex flex-col justify-center items-start md:items-end">
-                        <h4 className="text-lg font-bold text-indigo-700">
+                      <div className="flex w-full flex-col rounded-2xl border border-white/70 bg-white/45 px-4 py-3 md:items-end">
+                        <h4 className="break-words text-lg font-bold text-indigo-700">
                           {order.name}
                         </h4>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-slate-500">
                           {formatDate(order.createdAt)}
                         </p>
                       </div>
 
-                      <div className="flex w-full flex-col items-center justify-center">
+                      <div className="flex w-full flex-col items-center justify-center rounded-2xl border border-white/70 bg-white/40 px-3 py-4">
                         <div className="mb-2 flex items-center space-x-2 text-center font-semibold">
                           <span
                             className={`text-sm ${order.status === "Pending"
@@ -567,7 +573,7 @@ useEffect(() => {
                                 dragPercentByOrder[order._id] ??
                                 getBasePercent(order.status)
                               }
-                              className={`relative h-10 w-full touch-none select-none overflow-hidden rounded-full border border-white/70 bg-gradient-to-r from-yellow-300 via-blue-400 to-green-400 ${
+                              className={`relative h-11 w-full touch-none select-none overflow-hidden rounded-full border border-white/80 bg-gradient-to-r from-yellow-300 via-blue-400 to-green-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_10px_24px_rgba(59,130,246,0.16)] ${
                                 deliveryPartner && canDragStatus(order.status)
                                   ? "cursor-grab ring-2 ring-indigo-300 active:cursor-grabbing"
                                   : "cursor-not-allowed opacity-60"
@@ -610,8 +616,8 @@ useEffect(() => {
                             </div>
 
                             {/* Labels */}
-                            <div className="flex justify-between text-xs mt-2">
-                              <span className="flex flex-col items-center text-yellow-600">
+                            <div className="mt-3 flex justify-between text-xs font-semibold">
+                              <span className="flex flex-col items-center text-amber-600">
                                 <FaClock className="mb-1" />
                                 Pending
                               </span>

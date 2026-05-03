@@ -12,7 +12,7 @@ import {
 import { AppContext } from "./AppContext.jsx";
 
 const inputClassName =
-  "admin-interactive w-full rounded-2xl border border-emerald-200/24 bg-white/14 px-4 py-3.5 text-sm text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_10px_22px_rgba(0,0,0,0.10)] outline-none transition placeholder:text-emerald-50/50 focus:border-emerald-200/45 focus:ring-4 focus:ring-emerald-200/10";
+  "admin-interactive w-full rounded-2xl border border-cyan-200/18 bg-slate-950/34 px-4 py-3.5 text-sm text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_12px_26px_rgba(2,6,23,0.16)] outline-none transition placeholder:text-slate-300/58 focus:border-emerald-300/55 focus:bg-slate-950/42 focus:ring-4 focus:ring-emerald-300/10";
 
 const apiBaseUrl =
   import.meta.env.VITE_API_BASE_URL ||
@@ -99,34 +99,34 @@ const AdminLogin = () => {
 
       <main className="relative flex flex-1 items-center justify-center overflow-hidden px-4 pt-24 pb-6 sm:px-6 sm:pt-24 sm:pb-8 lg:px-8">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(20,184,166,0.10),_transparent_32%),radial-gradient(circle_at_bottom_right,_rgba(59,130,246,0.10),_transparent_34%)]" />
-        <div className="relative mx-auto w-full max-w-2xl rounded-[1.8rem] shadow-[0_20px_42px_rgba(15,23,42,0.10),0_0_0_2px_rgba(167,243,208,0.22),0_0_28px_rgba(94,234,212,0.22)]">
+        <div className="relative mx-auto w-full max-w-2xl rounded-[1.8rem] border border-white/10 bg-white/[0.03] p-1 shadow-[0_24px_70px_rgba(2,6,23,0.46),0_0_0_1px_rgba(94,234,212,0.08),0_0_42px_rgba(20,184,166,0.16)] backdrop-blur-sm">
           <form
             onSubmit={handleSubmit}
-            className="admin-card admin-fade-up rounded-[1.8rem] border border-emerald-100/25 bg-gradient-to-br from-[#355f6f] via-[#4b8c85] to-[#7dc8bc] p-4 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),inset_0_-10px_18px_rgba(0,0,0,0.04),0_14px_26px_rgba(10,40,32,0.14)] sm:p-5 lg:p-6"
+            className="admin-card admin-fade-up rounded-[1.6rem] border border-emerald-200/14 bg-[linear-gradient(135deg,#14233c_0%,#164057_45%,#1f6b65_100%)] p-4 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-18px_28px_rgba(2,6,23,0.18),0_16px_34px_rgba(2,6,23,0.24)] sm:p-5 lg:p-7"
             aria-labelledby="admin-login-title"
           >
             <div className="flex items-center justify-between gap-3">
-              <span className="inline-flex rounded-full border border-white/15 bg-white/14 px-4 py-2 text-xs font-semibold uppercase tracking-[0.26em] text-emerald-50">
+              <span className="inline-flex rounded-full border border-emerald-200/18 bg-slate-950/26 px-4 py-2 text-xs font-semibold uppercase tracking-[0.26em] text-emerald-100">
                 Admin Login
               </span>
-              <span className="inline-flex rounded-full border border-white/12 bg-white/16 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-emerald-50">
+              <span className="inline-flex rounded-full border border-cyan-200/16 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-100">
                 MongoDB Access
               </span>
             </div>
 
             <h2
               id="admin-login-title"
-              className="mt-4 text-[2rem] font-black tracking-tight text-white sm:text-3xl"
+              className="mt-5 text-[2rem] font-black tracking-tight text-white sm:text-3xl"
             >
               Welcome Back Arpit Sharma
             </h2>
-            <p className="mt-2 text-base leading-7 text-emerald-50/88">
+            <p className="mt-2 text-base leading-7 text-slate-200/88">
               Manage donations, track activity, and coordinate NourishNext from one place.
             </p>
 
             <div className="mt-6 space-y-4">
               <div>
-                <label className="mb-1.5 block text-sm font-semibold tracking-[0.03em] text-emerald-50/90">
+                <label className="mb-1.5 block text-sm font-semibold tracking-[0.03em] text-slate-100/90">
                   Email
                 </label>
                 <input
@@ -142,7 +142,7 @@ const AdminLogin = () => {
               </div>
 
               <div>
-                <label className="mb-1.5 block text-sm font-semibold tracking-[0.03em] text-emerald-50/90">
+                <label className="mb-1.5 block text-sm font-semibold tracking-[0.03em] text-slate-100/90">
                   Password
                 </label>
                 <div className="relative">
@@ -159,7 +159,7 @@ const AdminLogin = () => {
                   <button
                     type="button"
                     onClick={() => setShowPassword((prev) => !prev)}
-                    className="absolute inset-y-0 right-0 flex w-12 items-center justify-center text-emerald-50/85 transition hover:text-white"
+                    className="absolute inset-y-0 right-0 flex w-12 items-center justify-center text-cyan-100/80 transition hover:text-white"
                     aria-label={showPassword ? "Hide password" : "Show password"}
                   >
                     {showPassword ? (
@@ -180,7 +180,7 @@ const AdminLogin = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="admin-interactive w-full rounded-2xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_24px_rgba(2,18,38,0.22)] transition hover:-translate-y-0.5 hover:bg-emerald-300 hover:text-slate-950 disabled:cursor-not-allowed disabled:opacity-70"
+                className="admin-interactive w-full rounded-2xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_28px_rgba(2,6,23,0.34)] transition hover:-translate-y-0.5 hover:bg-emerald-300 hover:text-slate-950 disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {isSubmitting ? "Logging in..." : "Login to dashboard"}
               </button>
@@ -188,7 +188,7 @@ const AdminLogin = () => {
               <button
                 type="button"
                 onClick={() => (window.location.href = mainAppUrl)}
-                className="admin-interactive w-full rounded-2xl border border-white/20 px-5 py-3 text-sm font-semibold text-emerald-50/90 transition hover:bg-white/8"
+                className="admin-interactive w-full rounded-2xl border border-cyan-100/16 bg-slate-950/14 px-5 py-3 text-sm font-semibold text-slate-100/90 transition hover:border-cyan-100/26 hover:bg-white/8"
               >
                 Back to start page
               </button>
@@ -196,7 +196,7 @@ const AdminLogin = () => {
               <button
                 type="button"
                 onClick={autoFillCredentials}
-                className="admin-interactive w-full rounded-2xl border border-emerald-300/25 bg-white/8 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/12"
+                className="admin-interactive w-full rounded-2xl border border-emerald-300/18 bg-emerald-300/10 px-5 py-3 text-sm font-semibold text-white transition hover:border-emerald-200/30 hover:bg-emerald-300/14"
               >
                 Use local admin credentials
               </button>

@@ -10,7 +10,7 @@ import foodDonationRoutes from "./routes/foodDonationRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import deliveryRoutes from "./routes/deliveryRoutes.js";
 
-dotenv.config();
+dotenv.config({ override: true });
 
 const app = express();
 
