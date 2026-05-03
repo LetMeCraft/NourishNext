@@ -34,7 +34,7 @@ const Navbar = () => {
     !isLoggedIn && currentPath !== "/start" && currentPath !== "/signup";
 
   return (
-    <header className="fixed top-0 z-50 flex h-18 w-full items-center justify-between border-b border-slate-200/80 bg-gradient-to-b from-stone-50 via-white to-slate-100/90 px-4 shadow-sm backdrop-blur-sm sm:px-6 md:grid md:grid-cols-[auto_1fr_auto] md:gap-6 md:px-8 lg:px-12 xl:px-16">
+    <header className="fixed top-0 z-50 flex h-18 w-full items-center justify-between border-b border-slate-200/80 bg-gradient-to-b from-stone-50 via-white to-slate-100/90 px-4 shadow-sm backdrop-blur-sm sm:px-6 md:px-8 lg:px-12 xl:px-16">
       <NavLink
         to="/"
         end
@@ -50,7 +50,7 @@ const Navbar = () => {
         </div>
       </NavLink>
 
-      <div className="flex items-center gap-3 md:hidden">
+      <div className="flex items-center gap-4 md:hidden">
         {shouldShowSignIn && (
           <NavLink
             to="/start"
@@ -73,80 +73,68 @@ const Navbar = () => {
         </button>
       </div>
 
-      <div className="flex flex-1 items-center justify-center md:flex-none md:justify-self-center">
-        <nav
-          className={`nav-bar absolute left-0 top-18 w-full overflow-y-auto bg-slate-700/95 backdrop-blur-sm transition-[max-height] duration-200 ease-in md:static md:w-auto md:overflow-visible md:bg-transparent md:flex md:items-center ${navActive ? "max-h-72" : "max-h-0"} md:max-h-none`}
-        >
-          <ul className="text-center text-lg text-white md:flex md:space-x-6 md:text-black">
-            <li>
-              <NavLink
-                to="/"
-                end
-                className={({ isActive }) =>
-                  isActive
-                    ? "block rounded-full bg-white/10 px-6 py-2 font-semibold text-white md:bg-transparent md:text-sky-700"
-                    : "block rounded-full px-6 py-2 transition hover:bg-white/10 hover:text-white md:hover:bg-slate-100 md:hover:text-slate-800"
-                }
-                onClick={() => setNavActive(false)}
-              >
-                Home
-              </NavLink>
-            </li>
+      <div className="hidden md:flex items-center gap-6">
+        <nav className="nav-bar flex items-center gap-2">
+          <NavLink
+            to="/"
+            end
+            className={({ isActive }) =>
+              isActive
+                ? "block rounded-full px-6 py-2 font-semibold text-sky-700"
+                : "block rounded-full px-6 py-2 transition hover:bg-slate-100 hover:text-slate-800"
+            }
+            onClick={() => setNavActive(false)}
+          >
+            Home
+          </NavLink>
 
-            <li>
-              <NavLink
-                to="/about"
-                className={({ isActive }) =>
-                  isActive
-                    ? "block rounded-full bg-white/10 px-6 py-2 font-semibold text-white md:bg-transparent md:text-sky-700"
-                    : "block rounded-full px-6 py-2 transition hover:bg-white/10 hover:text-white md:hover:bg-slate-100 md:hover:text-slate-800"
-                }
-                onClick={() => setNavActive(false)}
-              >
-                About
-              </NavLink>
-            </li>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              isActive
+                ? "block rounded-full px-6 py-2 font-semibold text-sky-700"
+                : "block rounded-full px-6 py-2 transition hover:bg-slate-100 hover:text-slate-800"
+            }
+            onClick={() => setNavActive(false)}
+          >
+            About
+          </NavLink>
 
-            <li>
-              <NavLink
-                to="/contact"
-                className={({ isActive }) =>
-                  isActive
-                    ? "block rounded-full bg-white/10 px-6 py-2 font-semibold text-white md:bg-transparent md:text-sky-700"
-                    : "block rounded-full px-6 py-2 transition hover:bg-white/10 hover:text-white md:hover:bg-slate-100 md:hover:text-slate-800"
-                }
-                onClick={() => setNavActive(false)}
-              >
-                Contact
-              </NavLink>
-            </li>
+          <NavLink
+            to="/contact"
+            className={({ isActive }) =>
+              isActive
+                ? "block rounded-full px-6 py-2 font-semibold text-sky-700"
+                : "block rounded-full px-6 py-2 transition hover:bg-slate-100 hover:text-slate-800"
+            }
+            onClick={() => setNavActive(false)}
+          >
+            Contact
+          </NavLink>
 
-            <li>
-              <NavLink
-                to="/profile"
-                className={({ isActive }) =>
-                  isActive
-                    ? "block rounded-full bg-white/10 px-6 py-2 font-semibold text-white md:bg-transparent md:text-sky-700"
-                    : "block rounded-3xl px-6 py-2 transition hover:bg-white/10 hover:text-white md:hover:bg-slate-100 md:hover:text-slate-800"
-                }
-                onClick={() => setNavActive(false)}
-              >
-                Profile
-              </NavLink>
-            </li>
-          </ul>
+          <NavLink
+            to="/profile"
+            className={({ isActive }) =>
+              isActive
+                ? "block rounded-full px-6 py-2 font-semibold text-sky-700"
+                : "block rounded-full px-6 py-2 transition hover:bg-slate-100 hover:text-slate-800"
+            }
+            onClick={() => setNavActive(false)}
+          >
+            Profile
+          </NavLink>
         </nav>
-      </div>
 
-      {shouldShowSignIn && (
-        <NavLink
-          to="/start"
-          className="hidden rounded-full border border-slate-300 bg-gradient-to-b from-slate-700 to-sky-700 px-5 py-1.5 font-bold text-white shadow-md transition duration-200 hover:scale-95 hover:from-slate-600 hover:to-sky-600 md:block md:justify-self-end"
-          onClick={() => setNavActive(false)}
-        >
-          Sign In
-        </NavLink>
-      )}
+        {shouldShowSignIn && (
+          <NavLink
+            to="/start"
+            className="whitespace-nowrap rounded-full border border-slate-300 bg-gradient-to-b from-slate-700 to-sky-700 px-5 py-1.5 font-bold text-white shadow-md transition duration-200 hover:scale-95 hover:from-slate-600 hover:to-sky-600"
+            onClick={() => setNavActive(false)}
+          >
+            Sign In
+          </NavLink>
+        )}
+      </div>
     </header>
   );
 };
